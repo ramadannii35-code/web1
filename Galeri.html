@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galeri – Kesiswaan SMAN 1 Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --navy: #0d2137;
+        --navy2: #163250;
+        --gold: #e8a020;
+        --gold2: #f5c84a;
+      }
+      body {
+        font-family: "Nunito", sans-serif;
+      }
+      .navbar {
+        background: var(--navy) !important;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+      }
+      .navbar-brand-text {
+        font-family: "Playfair Display", serif;
+        color: #fff !important;
+        font-size: 1.05rem;
+        line-height: 1.2;
+      }
+      .navbar-brand-text small {
+        display: block;
+        color: var(--gold2);
+        font-size: 0.72rem;
+      }
+      .nav-logo-circle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: grid;
+        place-items: center;
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        color: var(--navy);
+        font-weight: 700;
+      }
+      .navbar-nav .nav-link {
+        color: #c9d8e8 !important;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 8px 14px !important;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link.active {
+        background: rgba(232, 160, 32, 0.15) !important;
+        color: #fff !important;
+      }
+      .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      .navbar-toggler-icon {
+        filter: invert(1);
+      }
+
+      .page-header {
+        background: linear-gradient(135deg, var(--navy), var(--navy2));
+      }
+      .page-header h1 {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+        font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      }
+      .section-label {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--gold);
+      }
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 2.8vw, 2rem);
+        color: var(--navy);
+      }
+
+      /* FILTER BUTTONS */
+      .filter-btn {
+        border-radius: 50px;
+        padding: 6px 18px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 2px solid #dde8f0;
+        background: #fff;
+        color: #607080;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--navy);
+        color: #fff;
+        border-color: var(--navy);
+      }
+
+      /* GALLERY CARD */
+      .gal-card {
+        background: #fff;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        transition:
+          transform 0.18s,
+          box-shadow 0.18s;
+      }
+      .gal-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+      }
+      .gal-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      .gal-card-title {
+        font-weight: 700;
+        color: #1e293b;
+        font-size: 15px;
+        margin-bottom: 3px;
+      }
+      .gal-card-desc {
+        color: #64748b;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+      .badge-fasilitas {
+        background: #dbeafe;
+        color: #3b82f6;
+        font-size: 0.72rem;
+      }
+      .badge-kegiatan {
+        background: #fef3c7;
+        color: #f59e0b;
+        font-size: 0.72rem;
+      }
+      .badge-prestasi {
+        background: #d1fae5;
+        color: #10b981;
+        font-size: 0.72rem;
+      }
+
+      /* FASILITAS */
+      .fas-card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #e4ecf4;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .fas-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(13, 42, 85, 0.1);
+      }
+      .fas-photo {
+        height: 130px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+      }
+      .fas-card h4 {
+        color: #0d2a55;
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+      .fas-card p {
+        color: #7a90a8;
+        font-size: 12.5px;
+        line-height: 1.6;
+      }
+      .fas-badge {
+        display: inline-block;
+        background: #e8f8ee;
+        color: #1a8a40;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 12px;
+        border-radius: 12px;
+        margin-top: 10px;
+      }
+      .bg1 {
+        background: linear-gradient(135deg, #0d2a55, #1a6be6);
+      }
+      .bg2 {
+        background: linear-gradient(135deg, #1a5c38, #2d9e63);
+      }
+      .bg3 {
+        background: linear-gradient(135deg, #7b2f00, #c0542a);
+      }
+      .bg4 {
+        background: linear-gradient(135deg, #2c1a6e, #5b3cc4);
+      }
+      .bg5 {
+        background: linear-gradient(135deg, #6e1a1a, #c43c3c);
+      }
+      .bg6 {
+        background: linear-gradient(135deg, #1a5c5c, #2d9e9e);
+      }
+
+      footer {
+        background: var(--navy);
+        color: #9ab8d8;
+      }
+      .footer-title {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+      }
+      .footer-link {
+        color: #9ab8d8;
+        text-decoration: none;
+        font-size: 0.85rem;
+        display: block;
+        margin-bottom: 8px;
+        transition: color 0.2s;
+      }
+      .footer-link:hover {
+        color: var(--gold2);
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.82rem;
+      }
+      .footer-bottom span {
+        color: var(--gold2);
+      }
+      .watermark {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(13, 59, 110, 0.95);
+        border: 2px solid #c8a84b;
+        padding: 10px 14px;
+        text-align: center;
+        z-index: 999;
+        border-radius: 8px;
+      }
+      .watermark img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 2px solid #c8a84b;
+        display: block;
+        margin: 0 auto 6px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container-fluid px-4" style="max-width: 1400px; margin: 0 auto">
+        <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="index.html">
+          <div class="nav-logo-circle">K</div>
+          <span class="navbar-brand-text">KESISWAAN<small>SMAN 1 Nusantara</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+          <ul class="navbar-nav gap-1">
+            <li class="nav-item"><a class="nav-link" href="index.html">🏠 Beranda</a></li>
+            <li class="nav-item"><a class="nav-link" href="Profil.html">👤 Profil</a></li>
+            <li class="nav-item"><a class="nav-link" href="Layanan.html">📋 Layanan</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Galeri.html">🖼️ Galeri</a></li>
+            <li class="nav-item"><a class="nav-link" href="Formulir.html">📝 Formulir</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header py-5">
+      <div class="container py-3" style="max-width: 1100px">
+        <h1 class="mb-2">Galeri Kegiatan & Fasilitas</h1>
+        <p class="mb-0" style="color: #9ab8d8">Dokumentasi kegiatan, prestasi, dan fasilitas unggulan SMAN 1 Nusantara.</p>
+      </div>
+    </div>
+
+    <!-- GALLERY -->
+    <section class="py-5 bg-light">
+      <div class="container" style="max-width: 1100px">
+        <!-- Filter Tabs -->
+        <div class="d-flex flex-wrap gap-2 mb-4" id="filterBtns">
+          <button class="filter-btn active" data-filter="all">Semua</button>
+          <button class="filter-btn" data-filter="fasilitas">🏗️ Fasilitas</button>
+          <button class="filter-btn" data-filter="kegiatan">🎯 Kegiatan</button>
+          <button class="filter-btn" data-filter="prestasi">🏆 Prestasi</button>
+        </div>
+
+        <div class="row g-4" id="galleryGrid">
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="fasilitas">
+            <div class="gal-card">
+              <img src="gambar sekolah.jpg" alt="Gedung Sekolah" />
+              <div class="p-3">
+                <div class="gal-card-title">Gedung Sekolah</div>
+                <div class="gal-card-desc">Tampak depan gedung utama</div>
+                <span class="badge badge-fasilitas rounded-pill">Fasilitas</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="kegiatan">
+            <div class="gal-card">
+              <img src="dalam kelas.png" alt="Pembelajaran di Kelas" />
+              <div class="p-3">
+                <div class="gal-card-title">Pembelajaran di Kelas</div>
+                <div class="gal-card-desc">Suasana belajar yang kondusif</div>
+                <span class="badge badge-kegiatan rounded-pill">Kegiatan</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="prestasi">
+            <div class="gal-card">
+              <img src="sains.jpg" alt="Olimpiade Sains" />
+              <div class="p-3">
+                <div class="gal-card-title">Olimpiade Sains</div>
+                <div class="gal-card-desc">Juara OSN Matematika</div>
+                <span class="badge badge-prestasi rounded-pill">Prestasi</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="fasilitas">
+            <div class="gal-card">
+              <img src="ruang.jpg" alt="Ruang Kelas Modern" />
+              <div class="p-3">
+                <div class="gal-card-title">Ruang Kelas Modern</div>
+                <div class="gal-card-desc">Fasilitas LCD dan AC</div>
+                <span class="badge badge-fasilitas rounded-pill">Fasilitas</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="prestasi">
+            <div class="gal-card">
+              <img src="basket.jpg" alt="Tim Basket" />
+              <div class="p-3">
+                <div class="gal-card-title">Tim Basket</div>
+                <div class="gal-card-desc">Juara DBL Region</div>
+                <span class="badge badge-prestasi rounded-pill">Prestasi</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="fasilitas">
+            <div class="gal-card">
+              <img src="digital.jpg" alt="Perpustakaan Digital" />
+              <div class="p-3">
+                <div class="gal-card-title">Perpustakaan Digital</div>
+                <div class="gal-card-desc">Koleksi 15.000+ buku</div>
+                <span class="badge badge-fasilitas rounded-pill">Fasilitas</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="kegiatan">
+            <div class="gal-card">
+              <img src="study.jpg" alt="Study Tour" />
+              <div class="p-3">
+                <div class="gal-card-title">Study Tour</div>
+                <div class="gal-card-desc">Kunjungan edukatif</div>
+                <span class="badge badge-kegiatan rounded-pill">Kegiatan</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="fasilitas">
+            <div class="gal-card">
+              <img src="lab.jpg" alt="Laboratorium Komputer" />
+              <div class="p-3">
+                <div class="gal-card-title">Laboratorium Komputer</div>
+                <div class="gal-card-desc">40 unit komputer modern</div>
+                <span class="badge badge-fasilitas rounded-pill">Fasilitas</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="kegiatan">
+            <div class="gal-card">
+              <img src="musik.jpg" alt="Ekskul Musik" />
+              <div class="p-3">
+                <div class="gal-card-title">Ekskul Musik</div>
+                <div class="gal-card-desc">Band & Paduan Suara</div>
+                <span class="badge badge-kegiatan rounded-pill">Kegiatan</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="prestasi">
+            <div class="gal-card">
+              <img src="juara.jpg" alt="Juara 1 Nasional" />
+              <div class="p-3">
+                <div class="gal-card-title">Juara 1 Nasional</div>
+                <div class="gal-card-desc">Lomba debat nasional</div>
+                <span class="badge badge-prestasi rounded-pill">Prestasi</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="kegiatan">
+            <div class="gal-card">
+              <img src="robot.jpg" alt="Ekskul Robotik" />
+              <div class="p-3">
+                <div class="gal-card-title">Ekskul Robotik</div>
+                <div class="gal-card-desc">Inovasi teknologi siswa</div>
+                <span class="badge badge-kegiatan rounded-pill">Kegiatan</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 gal-item" data-cat="fasilitas">
+            <div class="gal-card">
+              <img src="lapangan.jpg" alt="Lapangan Olahraga" />
+              <div class="p-3">
+                <div class="gal-card-title">Lapangan Olahraga</div>
+                <div class="gal-card-desc">Fasilitas outdoor lengkap</div>
+                <span class="badge badge-fasilitas rounded-pill">Fasilitas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FASILITAS PENDUKUNG -->
+    <section class="py-5 bg-white">
+      <div class="container" style="max-width: 1100px">
+        <div class="section-label mb-1">🏗️ Infrastruktur</div>
+        <h2 class="section-title mb-4">Fasilitas Pendukung</h2>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="fas-card h-100">
+              <div class="fas-photo bg1">🏟️</div>
+              <div class="p-3">
+                <h4>Lapangan Olahraga Terpadu</h4>
+                <p>Lapangan sepak bola, basket, voli, dan badminton dalam satu kawasan yang modern dan luas.</p>
+                <span class="fas-badge">✓ Tersedia</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="fas-card h-100">
+              <div class="fas-photo bg2">🎭</div>
+              <div class="p-3">
+                <h4>Auditorium & Aula</h4>
+                <p>Kapasitas 800 orang, dilengkapi sound system profesional dan lighting panggung modern.</p>
+                <span class="fas-badge">✓ Tersedia</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="fas-card h-100">
+              <div class="fas-photo bg4">🔬</div>
+              <div class="p-3">
+                <h4>Laboratorium Modern</h4>
+                <p>Lab Fisika, Kimia, Biologi, Komputer, dan Bahasa yang lengkap dan terakreditasi nasional.</p>
+                <span class="fas-badge">✓ Tersedia</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="fas-card h-100">
+              <div class="fas-photo bg3">📚</div>
+              <div class="p-3">
+                <h4>Perpustakaan Digital</h4>
+                <p>Koleksi 15.000+ buku fisik dan akses perpustakaan digital dengan ribuan e-book dan jurnal.</p>
+                <span class="fas-badge">✓ Tersedia</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="fas-card h-100">
+              <div class="fas-photo bg5">🎸</div>
+              <div class="p-3">
+                <h4>Studio Musik & Seni</h4>
+                <p>Studio rekaman mini, ruang latihan band, studio tari, dan ruang melukis yang nyaman.</p>
+                <span class="fas-badge">✓ Tersedia</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="fas-card h-100">
+              <div class="fas-photo bg6">🍽️</div>
+              <div class="p-3">
+                <h4>Kantin Sehat & Koperasi</h4>
+                <p>Kantin dengan menu bergizi terjangkau, koperasi siswa, dan minimarket sekolah.</p>
+                <span class="fas-badge">✓ Tersedia</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WATERMARK -->
+    <div class="watermark">
+      <img src="foto rama.jpeg" alt="Foto Mahasiswa" />
+      <div style="font-size: 11px; font-weight: bold; color: #c8a84b">RAMADANI</div>
+      <div style="font-size: 10px; color: #b0c8e8">NIM: 24.53.031194</div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="py-5">
+      <div class="container" style="max-width: 1100px">
+        <div class="row g-4 mb-4">
+          <div class="col-lg-6">
+            <h5 class="footer-title mb-2">🏫 Kesiswaan SMAN 1 Nusantara</h5>
+            <p style="font-size: 0.85rem; line-height: 1.7">Bidang Kesiswaan hadir untuk melayani seluruh kebutuhan siswa dalam mengembangkan potensi diri secara optimal.</p>
+          </div>
+          <div class="col-lg-3">
+            <h6 class="text-white fw-bold mb-3">Menu Utama</h6>
+            <a class="footer-link" href="index.html">Beranda</a>
+            <a class="footer-link" href="Profil.html">Profil</a>
+            <a class="footer-link" href="Layanan.html">Layanan</a>
+            <a class="footer-link" href="Galeri.html">Galeri</a>
+            <a class="footer-link" href="Formulir.html">Formulir</a>
+          </div>
+          <div class="col-lg-3">
+            <h6 class="text-white fw-bold mb-3">Kontak</h6>
+            <p style="font-size: 0.85rem">Jl. Pendidikan No. 1</p>
+            <p style="font-size: 0.85rem">📞 (021) 123-4567</p>
+            <p style="font-size: 0.85rem">✉️ kesiswaan@sman1.sch.id</p>
+          </div>
+        </div>
+        <div class="footer-bottom pt-3 text-center">&copy; 2026 <span>Bidang Kesiswaan SMAN 1 Nusantara</span>. Seluruh hak cipta dilindungi.</div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Filter gallery
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const items = document.querySelectorAll(".gal-item");
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          const f = btn.dataset.filter;
+          items.forEach((item) => {
+            item.style.display = f === "all" || item.dataset.cat === f ? "" : "none";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

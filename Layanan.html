@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layanan – Kesiswaan SMAN 1 Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --navy: #0d2137;
+        --navy2: #163250;
+        --gold: #e8a020;
+        --gold2: #f5c84a;
+      }
+      body {
+        font-family: "Nunito", sans-serif;
+      }
+      .navbar {
+        background: var(--navy) !important;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+      }
+      .navbar-brand-text {
+        font-family: "Playfair Display", serif;
+        color: #fff !important;
+        font-size: 1.05rem;
+        line-height: 1.2;
+      }
+      .navbar-brand-text small {
+        display: block;
+        color: var(--gold2);
+        font-size: 0.72rem;
+      }
+      .nav-logo-circle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: grid;
+        place-items: center;
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        color: var(--navy);
+        font-weight: 700;
+      }
+      .navbar-nav .nav-link {
+        color: #c9d8e8 !important;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 8px 14px !important;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link.active {
+        background: rgba(232, 160, 32, 0.15) !important;
+        color: #fff !important;
+      }
+      .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      .navbar-toggler-icon {
+        filter: invert(1);
+      }
+
+      .page-header {
+        background: linear-gradient(135deg, var(--navy), var(--navy2));
+      }
+      .page-header h1 {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+        font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      }
+      .section-label {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--gold);
+      }
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 2.8vw, 2rem);
+        color: var(--navy);
+      }
+
+      /* PROGRAM */
+      .prog-item {
+        background: #fff;
+        border-radius: 14px;
+        padding: 28px 20px;
+        text-align: center;
+        border: 1px solid #e0e8f0;
+        transition:
+          box-shadow 0.2s,
+          transform 0.2s;
+      }
+      .prog-item:hover {
+        box-shadow: 0 6px 24px rgba(13, 33, 55, 0.1);
+        transform: translateY(-3px);
+      }
+      .prog-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #e8f4ff, #cce3ff);
+        display: grid;
+        place-items: center;
+        margin: 0 auto 16px;
+        font-size: 1.6rem;
+      }
+      .prog-item h4 {
+        color: var(--navy);
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .prog-item p {
+        color: #607080;
+        font-size: 0.82rem;
+      }
+
+      /* LAYANAN CARDS */
+      .lcard {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid #e0e8f0;
+        transition:
+          box-shadow 0.25s,
+          transform 0.2s;
+      }
+      .lcard:hover {
+        box-shadow: 0 8px 32px rgba(13, 33, 55, 0.12);
+        transform: translateY(-4px);
+      }
+      .lcard-header {
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+      }
+      .lcard-header::before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .lcard-header.c1 {
+        background: linear-gradient(135deg, #0d2137, #1a4a6e);
+      }
+      .lcard-header.c2 {
+        background: linear-gradient(135deg, #1a5c38, #2d9e63);
+      }
+      .lcard-header.c3 {
+        background: linear-gradient(135deg, #7b2f00, #c0542a);
+      }
+      .lcard-header.c4 {
+        background: linear-gradient(135deg, #2c1a6e, #5b3cc4);
+      }
+      .lcard-header.c5 {
+        background: linear-gradient(135deg, #1a3d6e, #2d6ea8);
+      }
+      .lcard-header.c6 {
+        background: linear-gradient(135deg, #4a1a6e, #8b3cc4);
+      }
+      .lcard-icon {
+        font-size: 2.4rem;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .lcard-header h3 {
+        color: #fff;
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+      }
+      .lcard-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .lcard-list li {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        font-size: 0.85rem;
+        color: #1e2d3d;
+      }
+      .lcard-list li::before {
+        content: "✓";
+        color: var(--gold);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .lcard-badge {
+        display: inline-block;
+        background: #e8f4ff;
+        color: #163250;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 50px;
+        margin-top: 14px;
+      }
+
+      /* EKSKUL */
+      .ekskul-item {
+        background: #fff;
+        border-radius: 10px;
+        padding: 16px;
+        border: 1px solid #dde8f0;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        transition: box-shadow 0.2s;
+      }
+      .ekskul-item:hover {
+        box-shadow: 0 4px 16px rgba(13, 33, 55, 0.1);
+      }
+      .ekskul-em {
+        font-size: 1.6rem;
+      }
+      .ekskul-info h5 {
+        color: var(--navy);
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+      .ekskul-info span {
+        color: #607080;
+        font-size: 0.75rem;
+      }
+
+      /* TATA TERTIB */
+      .tatib-group {
+        background: #f4f7fb;
+        border-radius: 14px;
+        padding: 28px;
+        border: 1px solid #dde8f0;
+      }
+      .tatib-group h3 {
+        font-family: "Playfair Display", serif;
+        color: var(--navy);
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .tatib-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .tatib-list li {
+        display: flex;
+        gap: 10px;
+        font-size: 0.88rem;
+        color: #1e2d3d;
+        line-height: 1.5;
+      }
+      .tnum {
+        min-width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--navy);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: 0.72rem;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .tatib-group.larangan .tnum {
+        background: #dc3545;
+      }
+
+      footer {
+        background: var(--navy);
+        color: #9ab8d8;
+      }
+      .footer-title {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+      }
+      .footer-link {
+        color: #9ab8d8;
+        text-decoration: none;
+        font-size: 0.85rem;
+        display: block;
+        margin-bottom: 8px;
+        transition: color 0.2s;
+      }
+      .footer-link:hover {
+        color: var(--gold2);
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.82rem;
+      }
+      .footer-bottom span {
+        color: var(--gold2);
+      }
+      .watermark {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(13, 59, 110, 0.95);
+        border: 2px solid #c8a84b;
+        padding: 10px 14px;
+        text-align: center;
+        z-index: 999;
+        border-radius: 8px;
+      }
+      .watermark img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 2px solid #c8a84b;
+        display: block;
+        margin: 0 auto 6px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container-fluid px-4" style="max-width: 1400px; margin: 0 auto">
+        <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="index.html">
+          <div class="nav-logo-circle">K</div>
+          <span class="navbar-brand-text">KESISWAAN<small>SMAN 1 Nusantara</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+          <ul class="navbar-nav gap-1">
+            <li class="nav-item"><a class="nav-link" href="index.html">🏠 Beranda</a></li>
+            <li class="nav-item"><a class="nav-link" href="Profil.html">👤 Profil</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Layanan.html">📋 Layanan</a></li>
+            <li class="nav-item"><a class="nav-link" href="Galeri.html">🖼️ Galeri</a></li>
+            <li class="nav-item"><a class="nav-link" href="Formulir.html">📝 Formulir</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header py-5">
+      <div class="container py-3" style="max-width: 1100px">
+        <h1 class="mb-2">Layanan & Informasi Utama</h1>
+        <p class="mb-0" style="color: #9ab8d8">Segala layanan, program, dan informasi penting yang tersedia untuk mendukung pengembangan siswa SMAN 1 Nusantara.</p>
+      </div>
+    </div>
+
+    <!-- PROGRAM UNGGULAN -->
+    <section class="py-5 bg-light">
+      <div class="container" style="max-width: 1100px">
+        <div class="mb-5">
+          <div class="section-label mb-1">🎯 Program Unggulan</div>
+          <h2 class="section-title">Program Unggulan Kesiswaan</h2>
+        </div>
+        <div class="row g-3">
+          <div class="col-6 col-md-3">
+            <div class="prog-item h-100">
+              <div class="prog-icon">🏅</div>
+              <h4>Olimpiade Sains</h4>
+              <p>Persiapan OSN, KSN, dan kompetisi sains tingkat nasional.</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="prog-item h-100">
+              <div class="prog-icon">🎭</div>
+              <h4>Pentas Seni Tahunan</h4>
+              <p>Pementasan seni dan budaya akbar setiap akhir tahun ajaran.</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="prog-item h-100">
+              <div class="prog-icon">🤝</div>
+              <h4>Kepemimpinan OSIS</h4>
+              <p>Pelatihan leadership dan manajemen organisasi untuk pengurus OSIS.</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="prog-item h-100">
+              <div class="prog-icon">🌿</div>
+              <h4>Program Adiwiyata</h4>
+              <p>Gerakan sekolah hijau dan peduli lingkungan berkelanjutan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYANAN -->
+    <section class="py-5 bg-white">
+      <div class="container" style="max-width: 1100px">
+        <div class="mb-5">
+          <div class="section-label mb-1">📋 Layanan</div>
+          <h2 class="section-title">Layanan Kesiswaan</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="lcard h-100">
+              <div class="lcard-header c1">
+                <span class="lcard-icon">📝</span>
+                <h3>Administrasi Siswa</h3>
+              </div>
+              <div class="p-4">
+                <p class="text-secondary mb-3" style="font-size: 0.88rem">Layanan administrasi lengkap untuk kebutuhan dokumen dan surat kesiswaan.</p>
+                <ul class="lcard-list">
+                  <li>Surat Keterangan Aktif Siswa</li>
+                  <li>Surat Izin & Dispensasi</li>
+                  <li>Legalisir Dokumen Sekolah</li>
+                  <li>Pengurusan Data Siswa</li>
+                </ul>
+                <span class="lcard-badge">📅 Senin–Jumat</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="lcard h-100">
+              <div class="lcard-header c2">
+                <span class="lcard-icon">🎯</span>
+                <h3>Pembinaan OSIS</h3>
+              </div>
+              <div class="p-4">
+                <p class="text-secondary mb-3" style="font-size: 0.88rem">Dukungan penuh untuk kegiatan dan program kerja OSIS.</p>
+                <ul class="lcard-list">
+                  <li>Rapat & Koordinasi OSIS</li>
+                  <li>Pengajuan Program Kerja</li>
+                  <li>Pelatihan Kepemimpinan</li>
+                  <li>Pemilihan Pengurus Baru</li>
+                </ul>
+                <span class="lcard-badge">📅 Tiap Minggu</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="lcard h-100">
+              <div class="lcard-header c3">
+                <span class="lcard-icon">⚽</span>
+                <h3>Ekstrakurikuler</h3>
+              </div>
+              <div class="p-4">
+                <p class="text-secondary mb-3" style="font-size: 0.88rem">Pendaftaran dan pengelolaan 24 ekskul aktif.</p>
+                <ul class="lcard-list">
+                  <li>Pendaftaran Ekskul Baru</li>
+                  <li>Jadwal & Tempat Latihan</li>
+                  <li>Pembina & Pelatih Ekskul</li>
+                  <li>Prestasi & Kompetisi</li>
+                </ul>
+                <span class="lcard-badge">📅 Sesuai Jadwal</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="lcard h-100">
+              <div class="lcard-header c4">
+                <span class="lcard-icon">🏆</span>
+                <h3>Pembinaan Prestasi</h3>
+              </div>
+              <div class="p-4">
+                <p class="text-secondary mb-3" style="font-size: 0.88rem">Program intensif untuk siswa berprestasi tingkat regional dan nasional.</p>
+                <ul class="lcard-list">
+                  <li>Seleksi Siswa Berprestasi</li>
+                  <li>Pelatihan Kompetisi</li>
+                  <li>Pendampingan Olimpiade</li>
+                  <li>Monitoring Prestasi</li>
+                </ul>
+                <span class="lcard-badge">📅 Setiap Semester</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="lcard h-100">
+              <div class="lcard-header c5">
+                <span class="lcard-icon">🏅</span>
+                <h3>Beasiswa & Prestasi</h3>
+              </div>
+              <div class="p-4">
+                <p class="text-secondary mb-3" style="font-size: 0.88rem">Program penghargaan dan beasiswa untuk siswa berprestasi.</p>
+                <ul class="lcard-list">
+                  <li>Beasiswa Akademik Berprestasi</li>
+                  <li>Penghargaan Siswa Teladan</li>
+                  <li>Beasiswa Atlet & Seni</li>
+                  <li>Program Afirmasi Siswa Kurang Mampu</li>
+                </ul>
+                <span class="lcard-badge">📅 Tiap Semester</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="lcard h-100">
+              <div class="lcard-header c6">
+                <span class="lcard-icon">💬</span>
+                <h3>Konseling & BK</h3>
+              </div>
+              <div class="p-4">
+                <p class="text-secondary mb-3" style="font-size: 0.88rem">Layanan bimbingan dan konseling untuk kesejahteraan mental dan sosial siswa.</p>
+                <ul class="lcard-list">
+                  <li>Konseling Individu & Kelompok</li>
+                  <li>Mediasi Konflik Antar Siswa</li>
+                  <li>Bimbingan Karier & Perguruan Tinggi</li>
+                  <li>Layanan Darurat Psikologi</li>
+                </ul>
+                <span class="lcard-badge">📅 Setiap Hari</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EKSKUL -->
+    <section class="py-5 bg-light">
+      <div class="container" style="max-width: 1100px">
+        <div class="section-label mb-1">🌟 Ekstrakurikuler</div>
+        <h2 class="section-title mb-2">Daftar Ekstrakurikuler</h2>
+        <p class="text-secondary mb-4">Pilih ekskul sesuai minat dan bakat Anda. Kami memiliki 16 ekskul aktif.</p>
+        <div class="row g-3">
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">⚽</span>
+              <div class="ekskul-info">
+                <h5>Sepak Bola</h5>
+                <span>Rabu & Jum'at</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">🏀</span>
+              <div class="ekskul-info">
+                <h5>Basket</h5>
+                <span>Selasa & Kamis</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">🏐</span>
+              <div class="ekskul-info">
+                <h5>Voli</h5>
+                <span>Senin & Rabu</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">🥊</span>
+              <div class="ekskul-info">
+                <h5>Taekwondo</h5>
+                <span>Sabtu</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">🎸</span>
+              <div class="ekskul-info">
+                <h5>Band/Musik</h5>
+                <span>Jum'at</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">💃</span>
+              <div class="ekskul-info">
+                <h5>Tari Modern</h5>
+                <span>Kamis</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">🎭</span>
+              <div class="ekskul-info">
+                <h5>Teater</h5>
+                <span>Rabu</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">🖼️</span>
+              <div class="ekskul-info">
+                <h5>Seni Lukis</h5>
+                <span>Sabtu</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">📷</span>
+              <div class="ekskul-info">
+                <h5>Fotografi</h5>
+                <span>Sabtu</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">🔬</span>
+              <div class="ekskul-info">
+                <h5>KIR Sains</h5>
+                <span>Selasa</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">💻</span>
+              <div class="ekskul-info">
+                <h5>Robotika</h5>
+                <span>Sabtu</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">📰</span>
+              <div class="ekskul-info">
+                <h5>Jurnalistik</h5>
+                <span>Kamis</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">♟️</span>
+              <div class="ekskul-info">
+                <h5>Catur</h5>
+                <span>Selasa</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">🏕️</span>
+              <div class="ekskul-info">
+                <h5>Pramuka</h5>
+                <span>Jum'at</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">🚑</span>
+              <div class="ekskul-info">
+                <h5>PMR</h5>
+                <span>Rabu</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="ekskul-item">
+              <span class="ekskul-em">🇮🇩</span>
+              <div class="ekskul-info">
+                <h5>Paskibra</h5>
+                <span>Sabtu</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TATA TERTIB -->
+    <section class="py-5 bg-white">
+      <div class="container" style="max-width: 1100px">
+        <div class="section-label mb-1">📜 Tata Tertib</div>
+        <h2 class="section-title mb-4">Tata Tertib Siswa</h2>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="tatib-group">
+              <h3>✅ Kewajiban Siswa</h3>
+              <ul class="tatib-list">
+                <li><span class="tnum">1</span> Hadir tepat waktu sebelum pukul 07.00 WIB</li>
+                <li><span class="tnum">2</span> Mengenakan seragam lengkap dan rapi setiap hari</li>
+                <li><span class="tnum">3</span> Mengikuti upacara bendera setiap Senin</li>
+                <li><span class="tnum">4</span> Bersikap sopan kepada guru dan sesama siswa</li>
+                <li><span class="tnum">5</span> Menjaga kebersihan dan ketertiban lingkungan sekolah</li>
+                <li><span class="tnum">6</span> Mengikuti kegiatan pembelajaran dengan sungguh-sungguh</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="tatib-group larangan">
+              <h3>🚫 Larangan Siswa</h3>
+              <ul class="tatib-list">
+                <li><span class="tnum">1</span> Dilarang membawa dan menggunakan HP selama jam pelajaran</li>
+                <li><span class="tnum">2</span> Dilarang merokok di dalam maupun luar lingkungan sekolah</li>
+                <li><span class="tnum">3</span> Dilarang melakukan perundungan (bullying) dalam bentuk apapun</li>
+                <li><span class="tnum">4</span> Dilarang meninggalkan sekolah tanpa izin resmi</li>
+                <li><span class="tnum">5</span> Dilarang membawa senjata tajam dan benda berbahaya</li>
+                <li><span class="tnum">6</span> Dilarang terlibat dalam tawuran dan kegiatan kekerasan</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WATERMARK -->
+    <div class="watermark">
+      <img src="foto rama.jpeg" alt="Foto Mahasiswa" />
+      <div style="font-size: 11px; font-weight: bold; color: #c8a84b">RAMADANI</div>
+      <div style="font-size: 10px; color: #b0c8e8">NIM: 24.53.031194</div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="py-5">
+      <div class="container" style="max-width: 1100px">
+        <div class="row g-4 mb-4">
+          <div class="col-lg-6">
+            <h5 class="footer-title mb-2">🏫 Kesiswaan SMAN 1 Nusantara</h5>
+            <p style="font-size: 0.85rem; line-height: 1.7">Bidang Kesiswaan hadir untuk melayani seluruh kebutuhan siswa dalam mengembangkan potensi diri secara optimal.</p>
+          </div>
+          <div class="col-lg-3">
+            <h6 class="text-white fw-bold mb-3">Menu Utama</h6>
+            <a class="footer-link" href="index.html">Beranda</a>
+            <a class="footer-link" href="Profil.html">Profil</a>
+            <a class="footer-link" href="Layanan.html">Layanan</a>
+            <a class="footer-link" href="Galeri.html">Galeri</a>
+            <a class="footer-link" href="Formulir.html">Formulir</a>
+          </div>
+          <div class="col-lg-3">
+            <h6 class="text-white fw-bold mb-3">Kontak</h6>
+            <p style="font-size: 0.85rem">Jl. Pendidikan No. 1</p>
+            <p style="font-size: 0.85rem">📞 (021) 123-4567</p>
+            <p style="font-size: 0.85rem">✉️ kesiswaan@sman1.sch.id</p>
+          </div>
+        </div>
+        <div class="footer-bottom pt-3 text-center">&copy; 2026 <span>Bidang Kesiswaan SMAN 1 Nusantara</span>. Seluruh hak cipta dilindungi.</div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

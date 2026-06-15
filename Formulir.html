@@ -1,0 +1,1618 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulir – Kesiswaan SMAN 1 Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --navy: #0d2137;
+        --navy2: #163250;
+        --gold: #e8a020;
+        --gold2: #f5c84a;
+      }
+      body {
+        font-family: "Nunito", sans-serif;
+        background: #f4f7fb;
+      }
+      .navbar {
+        background: var(--navy) !important;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+      }
+      .navbar-brand-text {
+        font-family: "Playfair Display", serif;
+        color: #fff !important;
+        font-size: 1.05rem;
+        line-height: 1.2;
+      }
+      .navbar-brand-text small {
+        display: block;
+        color: var(--gold2);
+        font-size: 0.72rem;
+      }
+      .nav-logo-circle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: grid;
+        place-items: center;
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        color: var(--navy);
+        font-weight: 700;
+      }
+      .navbar-nav .nav-link {
+        color: #c9d8e8 !important;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 8px 14px !important;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link.active {
+        background: rgba(232, 160, 32, 0.15) !important;
+        color: #fff !important;
+      }
+      .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      .navbar-toggler-icon {
+        filter: invert(1);
+      }
+
+      .page-header {
+        background: linear-gradient(135deg, var(--navy), var(--navy2));
+      }
+      .page-header h1 {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+        font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      }
+
+      /* SIDEBAR */
+      .sidebar-dark {
+        background: var(--navy);
+        border-radius: 14px;
+        padding: 24px;
+      }
+      .sidebar-dark h4 {
+        font-family: "Playfair Display", serif;
+        color: var(--gold2);
+        font-size: 1rem;
+      }
+      .sidebar-dark li {
+        color: #9ab8d8;
+        font-size: 0.82rem;
+      }
+      .sidebar-gold {
+        background: rgba(232, 160, 32, 0.1);
+        border: 1px solid rgba(232, 160, 32, 0.25);
+        border-radius: 14px;
+        padding: 20px;
+      }
+      .sidebar-gold h4 {
+        color: var(--gold);
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+      .sidebar-gold p {
+        color: #9ab8d8;
+        font-size: 0.8rem;
+        line-height: 1.6;
+      }
+
+      /* FORM CARD */
+      .form-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 4px 32px rgba(13, 33, 55, 0.08);
+        border: 1px solid #e8eef8;
+        overflow: hidden;
+      }
+      .form-card-header {
+        background: linear-gradient(135deg, var(--navy), var(--navy2));
+        padding: 28px 32px;
+      }
+      .form-card-header h2 {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+        font-size: 1.4rem;
+      }
+      .form-section-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #e8eef8;
+      }
+      .section-num {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--navy);
+        color: var(--gold2);
+        font-weight: 700;
+        font-size: 0.85rem;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+      .form-section-title span {
+        font-family: "Playfair Display", serif;
+        color: var(--navy);
+        font-size: 1.05rem;
+        font-weight: 700;
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: #1e2d3d;
+        font-size: 0.88rem;
+        margin-bottom: 6px;
+      }
+      .form-control,
+      .form-select {
+        border: 1.5px solid #dde8f0;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        padding: 10px 14px;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .form-control:focus,
+      .form-select:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(232, 160, 32, 0.15);
+        outline: none;
+      }
+      .req {
+        color: #dc3545;
+        margin-left: 2px;
+      }
+      .form-hint {
+        font-size: 0.78rem;
+        color: #607080;
+        margin-top: 4px;
+      }
+
+      /* RADIO & CHECKBOX */
+      .option-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .option-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #f4f7fb;
+        border: 1.5px solid #dde8f0;
+        border-radius: 8px;
+        padding: 9px 14px;
+        cursor: pointer;
+        font-size: 0.88rem;
+        color: #1e2d3d;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .option-item:has(input:checked) {
+        background: rgba(232, 160, 32, 0.1);
+        border-color: var(--gold);
+        color: var(--navy);
+        font-weight: 600;
+      }
+      .option-item input {
+        accent-color: var(--gold);
+      }
+
+      /* SUBMIT BUTTONS */
+      .btn-gold {
+        background: var(--gold);
+        color: var(--navy);
+        font-weight: 700;
+        border-radius: 50px;
+        padding: 13px 36px;
+        border: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        font-size: 1rem;
+      }
+      .btn-gold:hover {
+        background: var(--gold2);
+        transform: translateY(-2px);
+        color: var(--navy);
+      }
+      .btn-reset-outline {
+        background: transparent;
+        color: #607080;
+        border: 2px solid #dde8f0;
+        border-radius: 50px;
+        padding: 11px 28px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.2s;
+      }
+      .btn-reset-outline:hover {
+        border-color: #607080;
+        color: var(--navy);
+      }
+
+      footer {
+        background: var(--navy);
+        color: #9ab8d8;
+      }
+      .footer-title {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+      }
+      .footer-link {
+        color: #9ab8d8;
+        text-decoration: none;
+        font-size: 0.85rem;
+        display: block;
+        margin-bottom: 8px;
+        transition: color 0.2s;
+      }
+      .footer-link:hover {
+        color: var(--gold2);
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.82rem;
+      }
+      .footer-bottom span {
+        color: var(--gold2);
+      }
+      .watermark {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(13, 59, 110, 0.95);
+        border: 2px solid #c8a84b;
+        padding: 10px 14px;
+        text-align: center;
+        z-index: 999;
+        border-radius: 8px;
+      }
+      .watermark img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 2px solid #c8a84b;
+        display: block;
+        margin: 0 auto 6px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container-fluid px-4" style="max-width: 1400px; margin: 0 auto">
+        <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="index.html">
+          <div class="nav-logo-circle">K</div>
+          <span class="navbar-brand-text">KESISWAAN<small>SMAN 1 Nusantara</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+          <ul class="navbar-nav gap-1">
+            <li class="nav-item"><a class="nav-link" href="index.html">🏠 Beranda</a></li>
+            <li class="nav-item"><a class="nav-link" href="Profil.html">👤 Profil</a></li>
+            <li class="nav-item"><a class="nav-link" href="Layanan.html">📋 Layanan</a></li>
+            <li class="nav-item"><a class="nav-link" href="Galeri.html">🖼️ Galeri</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Formulir.html">📝 Formulir</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header py-5">
+      <div class="container py-3" style="max-width: 1100px">
+        <h1 class="mb-2">Formulir Pendaftaran Kegiatan</h1>
+        <p class="mb-0" style="color: #9ab8d8">Isi formulir berikut untuk mendaftar ekskul atau kegiatan kesiswaan di SMAN 1 Nusantara.</p>
+      </div>
+    </div>
+
+    <!-- FORM AREA -->
+    <section class="py-5">
+      <div class="container" style="max-width: 1000px">
+        <div class="row g-4">
+          <!-- SIDEBAR -->
+          <div class="col-lg-3">
+            <div class="sidebar-dark mb-3">
+              <h4 class="mb-3">📋 Panduan Isi</h4>
+              <ul class="list-unstyled mb-0" style="display: flex; flex-direction: column; gap: 10px">
+                <li style="color: #9ab8d8; font-size: 0.82rem; display: flex; gap: 8px"><span style="color: var(--gold); font-weight: 700">✓</span> Isi semua data dengan benar dan lengkap</li>
+                <li style="color: #9ab8d8; font-size: 0.82rem; display: flex; gap: 8px"><span style="color: var(--gold); font-weight: 700">✓</span> Gunakan email aktif yang sering dicek</li>
+                <li style="color: #9ab8d8; font-size: 0.82rem; display: flex; gap: 8px"><span style="color: var(--gold); font-weight: 700">✓</span> Foto harus berlatar belakang putih</li>
+                <li style="color: #9ab8d8; font-size: 0.82rem; display: flex; gap: 8px"><span style="color: var(--gold); font-weight: 700">✓</span> Dokumen maksimal ukuran 2 MB</li>
+                <li style="color: #9ab8d8; font-size: 0.82rem; display: flex; gap: 8px"><span style="color: var(--gold); font-weight: 700">✓</span> Pendaftaran ditutup setiap hari Jumat</li>
+              </ul>
+            </div>
+            <div class="sidebar-gold">
+              <h4 class="mb-2">ℹ️ Info Penting</h4>
+              <p class="mb-0">Konfirmasi pendaftaran akan dikirim via WhatsApp dalam 1×24 jam kerja setelah formulir terverifikasi.</p>
+            </div>
+          </div>
+
+          <!-- FORM CARD -->
+          <div class="col-lg-9">
+            <div class="form-card">
+              <div class="form-card-header">
+                <h2 class="mb-1">📝 Formulir Pendaftaran Kegiatan Kesiswaan</h2>
+                <p style="color: #9ab8d8; font-size: 0.9rem; margin: 0">SMAN 1 Nusantara · Tahun Ajaran 2026/2027</p>
+              </div>
+              <div class="p-4">
+                <form id="regForm" novalidate>
+                  <!-- SECTION 1: DATA PRIBADI -->
+                  <div class="mb-5">
+                    <div class="form-section-title">
+                      <div class="section-num">1</div>
+                      <span>Data Pribadi</span>
+                    </div>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label">Nama Lengkap <span class="req">*</span></label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan nama lengkap sesuai rapor" required />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">NISN <span class="req">*</span></label>
+                        <input type="text" class="form-control" name="nisn" placeholder="10 digit NISN" maxlength="10" pattern="[0-9]{10}" required />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Nomor HP / WhatsApp <span class="req">*</span></label>
+                        <input type="tel" class="form-control" name="hp" placeholder="08xx-xxxx-xxxx" required />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Email <span class="req">*</span></label>
+                        <input type="email" class="form-control" name="email" placeholder="nama@email.com" required />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Tanggal Lahir <span class="req">*</span></label>
+                        <input type="date" class="form-control" name="tgl_lahir" required />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Jenis Kelamin <span class="req">*</span></label>
+                        <div class="option-group mt-1">
+                          <label class="option-item"><input type="radio" name="jenis_kelamin" value="L" required /> Laki-laki</label>
+                          <label class="option-item"><input type="radio" name="jenis_kelamin" value="P" /> Perempuan</label>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label">Alamat Lengkap <span class="req">*</span></label>
+                        <textarea class="form-control" name="alamat" rows="2" placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota" required></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SECTION 2: DATA AKADEMIK -->
+                  <div class="mb-5">
+                    <div class="form-section-title">
+                      <div class="section-num">2</div>
+                      <span>Data Akademik & Ekskul</span>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Tingkat Kelas <span class="req">*</span></label>
+                      <div class="option-group">
+                        <label class="option-item"><input type="radio" name="kelas" value="X" required /> Kelas X</label>
+                        <label class="option-item"><input type="radio" name="kelas" value="XI" /> Kelas XI</label>
+                        <label class="option-item"><input type="radio" name="kelas" value="XII" /> Kelas XII</label>
+                      </div>
+                    </div>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label">Jurusan / Program Studi <span class="req">*</span></label>
+                        <select class="form-select" name="jurusan" required>
+                          <option value="">-- Pilih Jurusan --</option>
+                          <option value="ipa1">IPA 1</option>
+                          <option value="ipa2">IPA 2</option>
+                          <option value="ipa3">IPA 3</option>
+                          <option value="ips1">IPS 1</option>
+                          <option value="ips2">IPS 2</option>
+                          <option value="bahasa">Bahasa</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Pilih Ekstrakurikuler <span class="req">*</span></label>
+                        <select class="form-select" name="ekskul" required>
+                          <option value="">-- Pilih Ekskul --</option>
+                          <optgroup label="🏅 Olahraga">
+                            <option value="sepakbola">Sepak Bola</option>
+                            <option value="basket">Basket</option>
+                            <option value="voli">Voli</option>
+                            <option value="taekwondo">Taekwondo</option>
+                            <option value="renang">Renang</option>
+                            <option value="karate">Karate</option>
+                          </optgroup>
+                          <optgroup label="🎨 Seni & Budaya">
+                            <option value="band">Band / Musik</option>
+                            <option value="tari">Tari Modern</option>
+                            <option value="teater">Teater</option>
+                            <option value="lukis">Seni Lukis</option>
+                          </optgroup>
+                          <optgroup label="🔬 Akademik">
+                            <option value="kir">KIR Sains</option>
+                            <option value="robotika">Robotika</option>
+                            <option value="jurnalistik">Jurnalistik</option>
+                          </optgroup>
+                          <optgroup label="🤝 Sosial">
+                            <option value="pramuka">Pramuka</option>
+                            <option value="pmr">PMR</option>
+                            <option value="paskibra">Paskibra</option>
+                          </optgroup>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SECTION 3: MINAT & MOTIVASI -->
+                  <div class="mb-5">
+                    <div class="form-section-title">
+                      <div class="section-num">3</div>
+                      <span>Minat & Motivasi</span>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Minat & Bakat yang Dimiliki <span class="req">*</span></label>
+                      <div class="option-group">
+                        <label class="option-item"><input type="checkbox" name="minat" value="olahraga" /> ⚽ Olahraga</label>
+                        <label class="option-item"><input type="checkbox" name="minat" value="seni" /> 🎨 Seni</label>
+                        <label class="option-item"><input type="checkbox" name="minat" value="teknologi" /> 💻 Teknologi</label>
+                        <label class="option-item"><input type="checkbox" name="minat" value="musik" /> 🎵 Musik</label>
+                        <label class="option-item"><input type="checkbox" name="minat" value="sains" /> 🔬 Sains</label>
+                        <label class="option-item"><input type="checkbox" name="minat" value="sosial" /> 🤝 Sosial</label>
+                        <label class="option-item"><input type="checkbox" name="minat" value="kepemimpinan" /> 👑 Kepemimpinan</label>
+                        <label class="option-item"><input type="checkbox" name="minat" value="publicspeaking" /> 🦩 Public Speaking</label>
+                      </div>
+                      <div class="form-hint">Pilih satu atau lebih sesuai minat Anda</div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="motivasi">Motivasi & Alasan Mendaftar <span class="req">*</span></label>
+                      <textarea
+                        class="form-control"
+                        id="motivasi"
+                        name="motivasi"
+                        rows="5"
+                        placeholder="Ceritakan mengapa Anda ingin bergabung dengan kegiatan ini, apa yang ingin Anda capai, dan kontribusi apa yang bisa Anda berikan..."
+                        required
+                        minlength="50"
+                      ></textarea>
+                      <div class="form-hint">Minimal 50 karakter. Tulis dengan jujur dan antusias!</div>
+                    </div>
+                    <div>
+                      <label class="form-label" for="pengalaman">Pengalaman Organisasi / Ekskul Sebelumnya</label>
+                      <textarea class="form-control" id="pengalaman" name="pengalaman" rows="3" placeholder="Ceritakan pengalaman organisasi atau ekskul sebelumnya (jika ada)..."></textarea>
+                      <div class="form-hint">Opsional — isi jika memiliki pengalaman sebelumnya</div>
+                    </div>
+                  </div>
+
+                  <!-- SECTION 4: UPLOAD DOKUMEN -->
+                  <div class="mb-4">
+                    <div class="form-section-title">
+                      <div class="section-num">4</div>
+                      <span>Upload Dokumen</span>
+                    </div>
+                    <div class="row g-3 mb-3">
+                      <div class="col-md-6">
+                        <label class="form-label" for="fotoProfil">Foto Profil / Pas Foto <span class="req">*</span></label>
+                        <input type="file" class="form-control" id="fotoProfil" name="fotoProfil" accept="image/jpeg,image/png,image/jpg" required />
+                        <div class="form-hint">Format JPG/PNG, ukuran maks. 2 MB, latar belakang putih</div>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="dokumenPendukung">Dokumen Pendukung (Sertifikat, Piagam, dll.) <span class="req">*</span></label>
+                        <input type="file" class="form-control" id="dokumenPendukung" name="dokumenPendukung" accept=".pdf,image/jpeg,image/png" />
+                        <div class="form-hint">Format PDF/JPG/PNG, ukuran maks. 2 MB (opsional)</div>
+                      </div>
+                    </div>
+
+                    <!-- PERSETUJUAN -->
+                    <div class="p-3 rounded" style="background: #f4f7fb; border: 1.5px solid #dde8f0">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="persetujuan" name="persetujuan" value="setuju" required />
+                        <label class="form-check-label" for="persetujuan" style="font-size: 0.88rem; color: #1e2d3d">
+                          Saya menyatakan bahwa semua data yang saya isi adalah benar dan dapat dipertanggungjawabkan. Saya bersedia mengikuti seluruh peraturan yang berlaku di SMAN 1 Nusantara. <span class="req">*</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- ACTION BUTTONS -->
+                  <div class="d-flex flex-wrap gap-3 justify-content-end pt-2">
+                    <button type="reset" class="btn btn-reset-outline">🔄 Reset Formulir</button>
+                    <button type="submit" class="btn btn-gold">✉️ Kirim Pendaftaran</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WATERMARK -->
+    <div class="watermark">
+      <img src="foto_rama.jpeg" alt="Foto Mahasiswa" />
+      <div style="font-size: 11px; font-weight: bold; color: #c8a84b">RAMADANI</div>
+      <div style="font-size: 10px; color: #b0c8e8">NIM: 24.53.031194</div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="py-5">
+      <div class="container" style="max-width: 1100px">
+        <div class="row g-4 mb-4">
+          <div class="col-lg-6">
+            <h5 class="footer-title mb-2">🏫 Kesiswaan SMAN 1 Nusantara</h5>
+            <p style="font-size: 0.85rem; line-height: 1.7">Bidang Kesiswaan hadir untuk melayani seluruh kebutuhan siswa dalam mengembangkan potensi diri secara optimal.</p>
+          </div>
+          <div class="col-lg-3">
+            <h6 class="text-white fw-bold mb-3">Menu Utama</h6>
+            <a class="footer-link" href="index.html">Beranda</a>
+            <a class="footer-link" href="Profil.html">Profil</a>
+            <a class="footer-link" href="Layanan.html">Layanan</a>
+            <a class="footer-link" href="Galeri.html">Galeri</a>
+            <a class="footer-link" href="Formulir.html">Formulir</a>
+          </div>
+          <div class="col-lg-3">
+            <h6 class="text-white fw-bold mb-3">Kontak</h6>
+            <p style="font-size: 0.85rem">Jl. Pendidikan No. 1</p>
+            <p style="font-size: 0.85rem">📞 (021) 123-4567</p>
+            <p style="font-size: 0.85rem">✉️ kesiswaan@sman1.sch.id</p>
+          </div>
+        </div>
+        <div class="footer-bottom pt-3 text-center">&copy; 2026 <span>Bidang Kesiswaan SMAN 1 Nusantara</span>. Seluruh hak cipta dilindungi.</div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.getElementById("regForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!this.checkValidity()) {
+          this.classList.add("was-validated");
+          return;
+        }
+        alert("✅ Pendaftaran berhasil dikirim! Konfirmasi akan dihubungi melalui WhatsApp dalam 1×24 jam kerja.");
+        this.reset();
+        this.classList.remove("was-validated");
+      });
+    </script>
+  </body>
+</html>
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulir</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --navy: #0d2137;
+        --navy2: #163250;
+        --gold: #e8a020;
+        --gold2: #f5c84a;
+        --white: #ffffff;
+        --light: #f4f7fb;
+        --text: #1e2d3d;
+        --muted: #607080;
+        --radius: 14px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        color: #333;
+      }
+
+      /* NAVBAR */
+      nav {
+        background: #0d2137;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+      }
+      .nav-inner {
+        max-width: 1500px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+      }
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        padding: 14px 0;
+      }
+      .nav-logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #e8a020;
+        display: grid;
+        place-items: center;
+        font-family: "Playfair Display", serif;
+        font-size: 1.15rem;
+        color: #0d2137;
+        font-weight: 700;
+      }
+      .nav-brand span {
+        font-family: "Playfair Display", serif;
+        color: #ffffff;
+        font-size: 1.05rem;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      .nav-brand small {
+        display: block;
+        color: #f5c84a;
+        font-size: 0.72rem;
+        font-family: "Nunito", sans-serif;
+        font-weight: 500;
+      }
+      .nav-links {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+      }
+      .nav-links a {
+        display: block;
+        padding: 8px 14px;
+        color: #c9d8e8;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        background: rgba(232, 160, 32, 0.15);
+        color: white;
+      }
+
+      /* BAGIAN ATAS */
+      .page-header {
+        background: linear-gradient(135deg, #0d2137, #163250);
+        padding: 64px 24px;
+      }
+      .page-header-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .page-header h1 {
+        font-family: "Playfair Display", serif;
+        color: #ffffff;
+        font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+        margin-bottom: 12px;
+      }
+      .page-header p {
+        color: #9ab8d8;
+        font-size: 1rem;
+        max-width: 560px;
+      }
+      section {
+        padding: 64px 24px;
+      }
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .section-label {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #e8a020;
+        margin-bottom: 10px;
+      }
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 2.8vw, 2rem);
+        color: #0d2137;
+        margin-bottom: 14px;
+      }
+      .section-sub {
+        color: #607080;
+        font-size: 1rem;
+        max-width: 560px;
+      }
+
+      /* AREA FORM */
+      .form-area {
+        padding: 56px 24px;
+      }
+      .form-container {
+        max-width: 860px;
+        margin: 0 auto;
+        display: flex;
+        gap: 32px;
+        align-items: flex-start;
+      }
+      .form-sidebar {
+        width: 260px;
+        flex-shrink: 0;
+      }
+      .sidebar-card {
+        background: #0d2137;
+        border-radius: 14px;
+        padding: 24px;
+        margin-bottom: 20px;
+      }
+      .sidebar-card h4 {
+        font-family: "Playfair Display", serif;
+        color: #f5c84a;
+        font-size: 1rem;
+        margin-bottom: 14px;
+      }
+      .sidebar-card ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .sidebar-card li {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        color: #9ab8d8;
+        font-size: 0.82rem;
+      }
+      .sidebar-card li::before {
+        content: "✓";
+        color: #e8a020;
+        flex-shrink: 0;
+        font-weight: 700;
+      }
+      .sidebar-info {
+        background: rgba(232, 160, 32, 0.1);
+        border: 1px solid rgba(232, 160, 32, 0.25);
+        border-radius: 14px;
+        padding: 20px;
+      }
+      .sidebar-info h4 {
+        color: #e8a020;
+        font-size: 0.88rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .sidebar-info p {
+        color: #9ab8d8;
+        font-size: 0.8rem;
+        line-height: 1.6;
+      }
+
+      /* FORM CARD */
+      .form-card {
+        flex: 1;
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 4px 24px rgba(13, 33, 55, 0.08);
+        border: 1px solid #e0e8f0;
+      }
+      .form-title {
+        font-family: "Playfair Display", serif;
+        color: #0d2137;
+        font-size: 1.5rem;
+        margin-bottom: 6px;
+      }
+      .form-subtitle {
+        color: #607080;
+        font-size: 0.88rem;
+        margin-bottom: 32px;
+        padding-bottom: 24px;
+        border-bottom: 2px solid #f4f7fb;
+      }
+
+      /* BAGIAN NOMOR */
+      .form-section {
+        margin-bottom: 36px;
+      }
+      .form-section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e8f0f8;
+      }
+      .form-section-title span {
+        font-family: "Playfair Display", serif;
+        color: #0d2137;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+      .section-num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #0d2137;
+        color: #ffffff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+
+      /* GAYA BIDANG */
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .field-row.full {
+        grid-template-columns: 1fr;
+      }
+      .field-row.three {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      .field-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .field-group label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #0d2137;
+      }
+      .field-group label .req {
+        color: v#f4f7fb;
+        margin-left: 3px;
+      }
+      .field-group .hint {
+        font-size: 0.75rem;
+        color: #607080;
+        margin-top: 2px;
+      }
+
+      /* INPUT BASE */
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="number"],
+      input[type="date"],
+      input[type="file"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 11px 14px;
+        border: 2px solid #dde8f0;
+        border-radius: 10px;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.9rem;
+        color: #1e2d3d;
+        background: #f4f7fb;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        outline: none;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #163250;
+        box-shadow: 0 0 0 3px rgba(22, 50, 80, 0.1);
+        background: #ffffff;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 110px;
+      }
+      select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23607080' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+        padding-right: 38px;
+      }
+      input[type="file"] {
+        padding: 9px 14px;
+        cursor: pointer;
+      }
+      input[type="file"]::file-selector-button {
+        background: #0d2137;
+        color: #ffffff;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        cursor: pointer;
+        margin-right: 12px;
+      }
+
+      /* RADIO & CHECKBOX */
+      .radio-group,
+      .check-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 4px;
+      }
+      .radio-item,
+      .check-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        background: #f4f7fb;
+        border: 2px solid #dde8f0;
+        border-radius: 10px;
+        padding: 10px 16px;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+        font-size: 0.88rem;
+        color: #1e2d3d;
+        font-weight: 600;
+      }
+      .radio-item:hover,
+      .check-item:hover {
+        border-color: #163250;
+        background: #eef5ff;
+      }
+      input[type="radio"],
+      .check-item input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: #0d2137;
+        cursor: pointer;
+      }
+      input[type="radio"]:checked + span,
+      input[type="checkbox"]:checked + span {
+        color: #0d2137;
+        font-weight: 700;
+      }
+
+      /* PASSWORD WRAPPER */
+      .pw-wrap {
+        position: relative;
+      }
+      .pw-wrap input {
+        padding-right: 44px;
+      }
+      .pw-toggle {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+        color: #607080;
+      }
+
+      /* PROGRESS */
+      .form-progress {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 28px;
+      }
+      .prog-dot {
+        flex: 1;
+        height: 5px;
+        border-radius: 10px;
+        background: #dde8f0;
+        transition: background 0.3s;
+      }
+      .prog-dot.done {
+        background: #e8a020;
+      }
+      .prog-dot.active {
+        background: #0d2137;
+      }
+
+      /* BUTTONS */
+      .btn-row {
+        display: flex;
+        gap: 16px;
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 2px solid #f4f7fb;
+      }
+      .btn-submit {
+        flex: 1;
+        padding: 14px 28px;
+        background: #0d2137;
+        color: #ffffff;
+        border: none;
+        border-radius: 50px;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition:
+          background 0.2s,
+          transform 0.15s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 16px rgba(13, 33, 55, 0.2);
+      }
+      .btn-submit:hover {
+        background: #163250;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(13, 33, 55, 0.25);
+      }
+      .btn-submit:active {
+        transform: translateY(0);
+      }
+      .btn-reset {
+        padding: 14px 24px;
+        background: #ffffff;
+        color: #607080;
+        border: 2px solid #dde8f0;
+        border-radius: 50px;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          border-color 0.2s,
+          color 0.2s,
+          background 0.2s;
+      }
+      .btn-reset:hover {
+        border-color: #b0bec5;
+        color: #1e2d3d;
+        background: #f4f7fb;
+      }
+
+      /* SUCCESS POPUP */
+      .success-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(13, 33, 55, 0.7);
+        z-index: 999;
+        place-items: center;
+      }
+      .success-overlay.show {
+        display: grid;
+      }
+      .success-box {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 48px 40px;
+        text-align: center;
+        max-width: 420px;
+        box-shadow: 0 24px 80px rgba(13, 33, 55, 0.3);
+        animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.85);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .success-icon {
+        font-size: 4rem;
+        margin-bottom: 16px;
+      }
+      .success-box h3 {
+        font-family: "Playfair Display", serif;
+        color: #0d2137;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      .success-box p {
+        color: #607080;
+        font-size: 0.9rem;
+        margin-bottom: 24px;
+      }
+      .btn-close-success {
+        background: #0d2137;
+        color: #ffffff;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 28px;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      /* INFO BADGE */
+      .info-badge {
+        display: flex;
+        gap: 10px;
+        background: #e8f4ff;
+        border: 1px solid #b8d8f8;
+        border-radius: 10px;
+        padding: 12px 16px;
+        margin-bottom: 24px;
+      }
+      .info-badge span {
+        font-size: 0.85rem;
+        color: #163250;
+        font-weight: 600;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #0d2137;
+        color: #9ab8d8;
+        padding: 40px 24px 20px;
+      }
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 32px;
+      }
+      .footer-brand h3 {
+        font-family: "Playfair Display", serif;
+        color: #ffffff;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+      .footer-brand p {
+        font-size: 0.85rem;
+        line-height: 1.7;
+      }
+      .footer-col h4 {
+        color: #ffffff;
+        font-size: 0.9rem;
+        margin-bottom: 14px;
+        font-weight: 700;
+      }
+      .footer-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .footer-col a {
+        color: #9ab8d8;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.2s;
+      }
+      .footer-col a:hover {
+        color: #f5c84a;
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
+        text-align: center;
+        font-size: 0.82rem;
+      }
+      .footer-bottom span {
+        color: #f5c84a;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <div class="nav-inner">
+        <a class="nav-brand">
+          <div class="nav-logo">K</div>
+          <span>KESISWAAN<small>SMAN 1 Nusantara</small></span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">🏠 Beranda</a></li>
+          <li><a href="Profil.html">👤 Profil</a></li>
+          <li><a href="Layanan.html">📋 Layanan</a></li>
+          <li><a href="Galeri.html">🖼️ Galeri</a></li>
+          <li><a href="Formulir.html" class="active">📝 Formulir</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- BAGIAN ATAS -->
+    <div class="page-header">
+      <div class="page-header-inner">
+        <h1>Formulir Pendaftaran Siswa</h1>
+        <p>Isi formulir berikut dengan lengkap dan benar untuk mendaftarkan diri ke kegiatan kesiswaan SMAN 1 Nusantara.</p>
+      </div>
+    </div>
+
+    <!-- SUCCESS POPUP -->
+    <input type="checkbox" id="successToggle" style="display: none" />
+
+    <div class="success-overlay" id="successOverlay">
+      <div class="success-box">
+        <div class="success-icon">🎉</div>
+        <h3>Pendaftaran Berhasil!</h3>
+        <p>Formulir Anda telah berhasil dikirim...</p>
+        <label for="successToggle" class="btn-close-success">Tutup</label>
+      </div>
+    </div>
+
+    <style>
+      /* Tambahkan ini untuk checkbox hack */
+      #successToggle:checked ~ .success-overlay {
+        opacity: 0;
+        visibility: hidden;
+      }
+    </style>
+
+    <div class="form-area">
+      <div class="form-container">
+        <!-- SIDEBAR -->
+        <div class="form-sidebar">
+          <div class="sidebar-card" style="margin-bottom: 20px">
+            <h4>📋 Petunjuk Pengisian</h4>
+            <ul>
+              <li>Isi semua kolom yang bertanda bintang (*)</li>
+              <li>Gunakan data yang valid dan dapat diverifikasi</li>
+              <li>Upload foto/dokumen dengan format JPG, PNG, atau PDF</li>
+              <li>Ukuran file maksimal 2 MB</li>
+              <li>Pastikan email aktif untuk notifikasi</li>
+              <li>Password minimal 8 karakter</li>
+            </ul>
+          </div>
+          <div style="background: rgba(232, 160, 32, 0.1); border: 1px solid rgba(232, 160, 32, 0.3); border-radius: 14px; padding: 20px">
+            <h4 style="color: #e8a020; font-size: 0.88rem; font-weight: 700; margin-bottom: 10px">⏰ Batas Pendaftaran</h4>
+            <p style="color: #9ab8d8; font-size: 0.8rem; line-height: 1.6">Formulir dibuka sampai dengan <strong style="color: #f5c84a">31 Mei 2026</strong> pukul 23.59 WIB. Segera daftarkan diri Anda!</p>
+          </div>
+          <div style="background: #ffffff; border: 1px solid #dde8f0; border-radius: 14px; padding: 20px; margin-top: 20px">
+            <h4 style="color: #0d2137; font-size: 0.88rem; font-weight: 700; margin-bottom: 10px">📞 Butuh Bantuan?</h4>
+            <p style="color: #607080; font-size: 0.8rem; line-height: 1.6">Hubungi kami di ruang kesiswaan atau telepon (021) 123-4567 pada hari Senin–Jumat pukul 07.00–15.00 WIB.</p>
+          </div>
+        </div>
+
+        <!-- MAIN FORM -->
+        <div class="form-card">
+          <div class="form-title">📝 Formulir Pendaftaran</div>
+          <div class="form-subtitle">Lengkapi data diri Anda dengan teliti. Semua data akan dijaga kerahasiaannya.</div>
+
+          <div class="form-progress">
+            <div class="prog-dot done"></div>
+            <div class="prog-dot done"></div>
+            <div class="prog-dot active"></div>
+            <div class="prog-dot"></div>
+            <div class="prog-dot"></div>
+          </div>
+
+          <div class="info-badge">
+            <span>ℹ️</span>
+            <span>Formulir ini digunakan untuk pendaftaran kegiatan ekstrakurikuler dan program kesiswaan SMAN 1 Nusantara Tahun 2026/2027.</span>
+          </div>
+
+          <form id="mainForm" onsubmit="handleSubmit(event)" onreset="handleReset()">
+            <!-- SECTION 1: DATA PRIBADI -->
+            <div class="form-section">
+              <div class="form-section-title">
+                <div class="section-num">1</div>
+                <span>Data Pribadi</span>
+              </div>
+
+              <!-- INPUT TEKS -->
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="namaLengkap">Nama Lengkap <span class="req">*</span></label>
+                  <input type="text" id="namaLengkap" name="namaLengkap" placeholder="Masukkan nama lengkap sesuai KK" required maxlength="100" />
+                  <span class="hint">Gunakan huruf kapital di awal kata</span>
+                </div>
+                <div class="field-group">
+                  <label for="nis">NIS (Nomor Induk Siswa) <span class="req">*</span></label>
+                  <input type="text" id="nis" name="nis" placeholder="Contoh: 1234567890" required maxlength="20" />
+                </div>
+              </div>
+
+              <!-- INPUT EMAIL -->
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="email">Alamat Email <span class="req">*</span></label>
+                  <input type="email" id="email" name="email" placeholder="siswa@email.com" required />
+                  <span class="hint">Email aktif untuk pengiriman notifikasi</span>
+                </div>
+                <!-- INPUT PASSWORD -->
+                <div class="field-group">
+                  <label for="password">Buat Password Akun <span class="req">*</span></label>
+                  <div class="pw-wrap">
+                    <input type="password" id="password" name="password" placeholder="Minimal 8 karakter" required minlength="8" />
+                    <button type="button" class="pw-toggle" onclick="togglePw()" title="Tampilkan/Sembunyikan">👁️</button>
+                  </div>
+                  <span class="hint">Kombinasikan huruf, angka, dan simbol</span>
+                </div>
+              </div>
+
+              <!-- INPUT NUMBER -->
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="noTelp">Nomor Telepon <span class="req">*</span></label>
+                  <input type="number" id="noTelp" name="noTelp" placeholder="Contoh: 081234567890" required min="0" />
+                  <span class="hint">Nomor WA yang aktif</span>
+                </div>
+                <!-- INPUT DATE -->
+                <div class="field-group">
+                  <label for="tanggalLahir">Tanggal Lahir <span class="req">*</span></label>
+                  <input type="date" id="tanggalLahir" name="tanggalLahir" required max="2010-12-31" min="2004-01-01" />
+                </div>
+              </div>
+
+              <!-- INPUT TEKS (Alamat) -->
+              <div class="field-row full">
+                <div class="field-group">
+                  <label for="alamat">Alamat Lengkap <span class="req">*</span></label>
+                  <input type="text" id="alamat" name="alamat" placeholder="Jl. Nama Jalan, No. Rumah, RT/RW, Kelurahan, Kecamatan" required />
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 2: DATA AKADEMIK -->
+            <div class="form-section">
+              <div class="form-section-title">
+                <div class="section-num">2</div>
+                <span>Data Akademik & Pilihan</span>
+              </div>
+
+              <!-- RADIO BUTTON -->
+              <div class="field-group" style="margin-bottom: 20px">
+                <label>Jenis Kelamin <span class="req">*</span></label>
+                <div class="radio-group">
+                  <label class="radio-item">
+                    <input type="radio" name="jenisKelamin" value="lakilaki" required />
+                    <span>👨 Laki-laki</span>
+                  </label>
+                  <label class="radio-item">
+                    <input type="radio" name="jenisKelamin" value="perempuan" />
+                    <span>👩 Perempuan</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- RADIO BUTTON (Kelas) -->
+              <div class="field-group" style="margin-bottom: 20px">
+                <label>Tingkat Kelas <span class="req">*</span></label>
+                <div class="radio-group">
+                  <label class="radio-item">
+                    <input type="radio" name="kelas" value="X" required />
+                    <span>Kelas X</span>
+                  </label>
+                  <label class="radio-item">
+                    <input type="radio" name="kelas" value="XI" />
+                    <span>Kelas XI</span>
+                  </label>
+                  <label class="radio-item">
+                    <input type="radio" name="kelas" value="XII" />
+                    <span>Kelas XII</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- DROPDOWN / SELECT -->
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="jurusan">Jurusan / Program Studi <span class="req">*</span></label>
+                  <select id="jurusan" name="jurusan" required>
+                    <option value="">-- Pilih Jurusan --</option>
+                    <option value="ipa1">IPA 1</option>
+                    <option value="ipa2">IPA 2</option>
+                    <option value="ipa3">IPA 3</option>
+                    <option value="ips1">IPS 1</option>
+                    <option value="ips2">IPS 2</option>
+                    <option value="bahasa">Bahasa</option>
+                  </select>
+                </div>
+
+                <!-- MINAT DAN MOTIVASI -->
+                <div class="field-group">
+                  <label for="ekskul">Pilih Ekstrakurikuler <span class="req">*</span></label>
+                  <select id="ekskul" name="ekskul" required>
+                    <option value="">-- Pilih Ekskul --</option>
+                    <optgroup label="🏅 Olahraga">
+                      <option value="sepakbola">Sepak Bola</option>
+                      <option value="basket">Basket</option>
+                      <option value="voli">Voli</option>
+                      <option value="taekwondo">Taekwondo</option>
+                      <option value="renang">Renang</option>
+                      <option value="karate">Karate</option>
+                    </optgroup>
+                    <optgroup label="🎨 Seni & Budaya">
+                      <option value="band">Band / Musik</option>
+                      <option value="tari">Tari Modern</option>
+                      <option value="teater">Teater</option>
+                      <option value="lukis">Seni Lukis</option>
+                    </optgroup>
+                    <optgroup label="🔬 Akademik">
+                      <option value="kir">KIR Sains</option>
+                      <option value="robotika">Robotika</option>
+                      <option value="jurnalistik">Jurnalistik</option>
+                    </optgroup>
+                    <optgroup label="🤝 Sosial">
+                      <option value="pramuka">Pramuka</option>
+                      <option value="pmr">PMR</option>
+                      <option value="paskibra">Paskibra</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="form-section-title">
+                <div class="section-num">3</div>
+                <span>Minat & Motivasi</span>
+              </div>
+
+              <!-- CHECKBOX -->
+              <div class="field-group" style="margin-bottom: 20px">
+                <label>Minat & Bakat yang Dimiliki <span class="req">*</span></label>
+                <div class="check-group">
+                  <label class="check-item">
+                    <input type="checkbox" name="minat" value="olahraga" />
+                    <span>⚽ Olahraga</span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="minat" value="seni" />
+                    <span>🎨 Seni</span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="minat" value="teknologi" />
+                    <span>💻 Teknologi</span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="minat" value="musik" />
+                    <span>🎵 Musik</span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="minat" value="sains" />
+                    <span>🔬 Sains</span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="minat" value="sosial" />
+                    <span>🤝 Sosial</span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="minat" value="kepemimpinan" />
+                    <span>👑 Kepemimpinan</span>
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="minat" value="kepemimpinan" />
+                    <span>🦩Public Speaking</span>
+                  </label>
+                </div>
+                <span class="hint">Pilih satu atau lebih sesuai minat Anda</span>
+              </div>
+
+              <!-- TEXTAREA -->
+              <div class="field-row full">
+                <div class="field-group">
+                  <label for="motivasi">Motivasi & Alasan Mendaftar <span class="req">*</span></label>
+                  <textarea
+                    id="motivasi"
+                    name="motivasi"
+                    rows="5"
+                    placeholder="Ceritakan mengapa Anda ingin bergabung dengan kegiatan ini, apa yang ingin Anda capai, dan kontribusi apa yang bisa Anda berikan..."
+                    required
+                    minlength="50"
+                  ></textarea>
+                  <span class="hint">Minimal 50 karakter. Tulis dengan jujur dan antusias!</span>
+                </div>
+              </div>
+
+              <!-- TEXTAREA (Pengalaman) -->
+              <div class="field-row full">
+                <div class="field-group">
+                  <label for="pengalaman">Pengalaman Organisasi / Ekskul Sebelumnya</label>
+                  <textarea id="pengalaman" name="pengalaman" rows="3" placeholder="Ceritakan pengalaman organisasi atau ekskul sebelumnya (jika ada)..."></textarea>
+                  <span class="hint">Opsional — isi jika memiliki pengalaman sebelumnya</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- DOKUMEN -->
+            <div class="form-section">
+              <div class="form-section-title">
+                <div class="section-num">4</div>
+                <span>Upload Dokumen</span>
+              </div>
+
+              <!-- INPUT FILE -->
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="fotoProfil">Foto Profil / Pas Foto <span class="req">*</span></label>
+                  <input type="file" id="fotoProfil" name="fotoProfil" accept="image/jpeg,image/png,image/jpg" required />
+                  <span class="hint">Format JPG/PNG, ukuran maks. 2 MB, latar belakang putih</span>
+                </div>
+
+                <div class="field-group">
+                  <label for="dokumenPendukung">Dokumen Pendukung (Sertifikat, Piagam, dll.)<span class="req">*</span></label>
+                  <input type="file" id="dokumenPendukung" name="dokumenPendukung" accept=".pdf,image/jpeg,image/png" />
+                  <span class="hint">Format PDF/JPG/PNG, ukuran maks. 2 MB (opsional)</span>
+                </div>
+              </div>
+
+              <!-- CHECKBOX PERSETUJUAN -->
+              <div class="field-group" style="margin-top: 8px">
+                <label class="check-item" style="border-color: #dde8f0; width: 100%">
+                  <input type="checkbox" name="persetujuan" value="setuju" required />
+                  <span>Saya menyatakan bahwa semua data yang saya isi adalah benar dan dapat dipertanggungjawabkan. Saya bersedia mengikuti seluruh peraturan yang berlaku di SMAN 1 Nusantara. <span class="req">*</span></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- TOMBOL SUBMIT & RESET -->
+            <div class="btn-row">
+              <button type="reset" class="btn-reset">🔄 Reset Formulir</button>
+              <button type="submit" class="btn-submit">✉️ Kirim Pendaftaran</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIXED INFO BUTTON -->
+    <div style="position: fixed; bottom: 20px; right: 20px; background-color: rgba(13, 59, 110, 0.95); border: 2px solid #c8a84b; padding: 10px 14px; text-align: center; z-index: 999">
+      <img src="foto rama.jpeg" alt="Foto Mahasiswa" style="width: 45px; height: 45px; border-radius: 50%; border: 2px solid #c8a84b; display: block; margin: 0 auto 6px auto" />
+      <div style="font-size: 11px; font-weight: bold; color: #c8a84b">RAMADANI</div>
+      <div style="font-size: 10px; color: #b0c8e8">NIM: 24.53.031194</div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <h3>🏫 Kesiswaan SMAN 1 Nusantara</h3>
+            <p>Bidang Kesiswaan hadir untuk melayani seluruh kebutuhan siswa dalam mengembangkan potensi diri secara optimal di lingkungan sekolah yang kondusif dan berprestasi.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Menu Utama</h4>
+            <ul>
+              <li><a href="hal_1.html">Beranda</a></li>
+              <li><a href="hal_2.html">Profil</a></li>
+              <li><a href="hal_3.html">Layanan</a></li>
+              <li><a href="hal_4.html">Galeri</a></li>
+              <li><a href="hal_5.html">Formulir</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Kontak</h4>
+            <ul>
+              <li>Jl. Pendidikan No. 1</li>
+              <li>📞 (021) 123-4567</li>
+              <li>✉️ kesiswaan@sman1.sch.id</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 <span>Bidang Kesiswaan SMAN 1 Nusantara</span>. Seluruh hak cipta dilindungi.</div>
+      </div>
+    </footer>
+  </body>
+</html>

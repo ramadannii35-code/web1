@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beranda</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --navy: #0d2137;
+        --navy2: #163250;
+        --gold: #e8a020;
+        --gold2: #f5c84a;
+        --light: #f4f7fb;
+        --muted: #607080;
+      }
+
+      body {
+        font-family: "Nunito", Arial, sans-serif;
+        font-size: 14px;
+        color: #333;
+      }
+
+      /* AWAL NAVBAR */
+      .navbar {
+        background: var(--navy);
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+      }
+      .navbar-brand {
+        font-family: "Playfair Display", serif;
+        color: #fff !important;
+        font-size: 1.05rem;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      .navbar-brand small {
+        display: block;
+        color: var(--gold2);
+        font-size: 0.72rem;
+        font-family: "Nunito", sans-serif;
+        font-weight: 500;
+      }
+      .nav-logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: grid;
+        place-items: center;
+        font-family: "Playfair Display", serif;
+        font-size: 1.15rem;
+        color: var(--navy);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .navbar-nav .nav-link {
+        color: #c9d8e8 !important;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 8px 14px !important;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link.active {
+        background: rgba(232, 160, 32, 0.15);
+        color: #fff !important;
+      }
+      .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      .navbar-toggler-icon {
+        filter: invert(1);
+      }
+      /* AKHIR NAVBAR */
+
+      /* ── AWAL HERO ── */
+      .hero {
+        background: linear-gradient(135deg, #0d2137 0%, #163250 60%, #1a4a6e 100%);
+        min-height: 88vh;
+      }
+      .hero-badge {
+        display: inline-block;
+        background: rgba(232, 160, 32, 0.18);
+        border: 1px solid rgba(232, 160, 32, 0.4);
+        color: var(--gold2);
+        border-radius: 50px;
+        padding: 6px 18px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.2;
+      }
+      .hero h1 em {
+        color: var(--gold2);
+        font-style: normal;
+      }
+      .hero p.lead {
+        color: #9ab8d8;
+        font-size: 1.05rem;
+      }
+      .btn-hero-primary {
+        background: var(--gold);
+        color: var(--navy);
+        padding: 14px 30px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        display: inline-block;
+      }
+      .btn-hero-primary:hover {
+        background: var(--gold2);
+        transform: translateY(-2px);
+        color: var(--navy);
+      }
+      .btn-hero-outline {
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: #fff;
+        padding: 12px 28px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+        display: inline-block;
+      }
+      .btn-hero-outline:hover {
+        border-color: var(--gold2);
+        background: rgba(232, 160, 32, 0.1);
+        color: #fff;
+      }
+
+      /* Stats Card */
+      .hero-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(8px);
+        border-radius: 20px;
+      }
+      .hero-card h3 {
+        color: var(--gold2);
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+      }
+      .stat-num {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+        font-size: 2rem;
+        font-weight: 700;
+        display: block;
+      }
+      .stat-label {
+        color: #9ab8d8;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      /* ── BERITA ── */
+      .section-label {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--gold);
+      }
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        color: var(--navy);
+      }
+
+      .berita-main {
+        background: var(--light);
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid #e0e8f0;
+      }
+      .berita-img {
+        background: linear-gradient(135deg, #0d2137, #1a5278);
+        height: 220px;
+        display: grid;
+        place-items: center;
+        font-size: 4rem;
+      }
+      .berita-content .tag {
+        display: inline-block;
+        background: #e8f4ff;
+        color: var(--navy2);
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 50px;
+      }
+      .berita-content h3 {
+        font-family: "Playfair Display", serif;
+        color: var(--navy);
+        font-size: 1.2rem;
+      }
+      .berita-content p {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .berita-item {
+        background: var(--light);
+        border-radius: 10px;
+        border: 1px solid #e0e8f0;
+      }
+      .berita-num {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--navy);
+        color: var(--gold2);
+        font-weight: 700;
+        font-size: 0.85rem;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+      .berita-item h5 {
+        color: var(--navy);
+        font-size: 0.88rem;
+        line-height: 1.4;
+      }
+      .berita-item .date {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      /* ── WATERMARK ── */
+      .watermark {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: rgba(13, 59, 110, 0.95);
+        border: 2px solid #c8a84b;
+        padding: 10px 14px;
+        text-align: center;
+        z-index: 999;
+      }
+      .watermark img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 2px solid #c8a84b;
+      }
+      .watermark .wm-name {
+        font-size: 11px;
+        font-weight: bold;
+        color: #c8a84b;
+      }
+      .watermark .wm-nim {
+        font-size: 10px;
+        color: #b0c8e8;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--navy);
+        color: #9ab8d8;
+      }
+      footer h3,
+      footer h4 {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+      }
+      footer h4 {
+        font-family: "Nunito", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+      footer p,
+      footer li {
+        font-size: 0.85rem;
+        line-height: 1.7;
+      }
+      footer a {
+        color: #9ab8d8;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.2s;
+      }
+      footer a:hover {
+        color: var(--gold2);
+      }
+      .footer-divider {
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      .footer-bottom {
+        font-size: 0.82rem;
+      }
+      .footer-bottom span {
+        color: var(--gold2);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── NAVBAR ── -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container-xl px-4">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <div class="nav-logo">K</div>
+          <span>KESISWAAN<small>SMAN 1 Nusantara</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+          <ul class="navbar-nav gap-1 py-2 py-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="index.html">🏠 Beranda</a></li>
+            <li class="nav-item"><a class="nav-link" href="Profil.html">👤 Profil</a></li>
+            <li class="nav-item"><a class="nav-link" href="Layanan.html">📋 Layanan</a></li>
+            <li class="nav-item"><a class="nav-link" href="Galeri.html">🖼️ Galeri</a></li>
+            <li class="nav-item"><a class="nav-link" href="Formulir.html">📝 Formulir</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section class="hero d-flex align-items-center">
+      <div class="container-lg py-5">
+        <div class="row align-items-center g-5">
+          <!-- Teks -->
+          <div class="col-lg-7">
+            <div class="hero-badge mb-3">✦ Bidang Kesiswaan</div>
+            <h1 class="mb-4">Selamat Datang di<br /><em>Portal Kesiswaan</em><br />SMAN 1 Nusantara</h1>
+            <p class="lead mb-4" style="max-width: 480px">Pusat informasi, layanan, dan pembinaan siswa yang modern. Kami hadir untuk mendukung setiap langkah perkembangan potensi Anda.</p>
+            <div class="d-flex flex-wrap gap-3">
+              <a href="Formulir.html" class="btn-hero-primary">Daftar Sekarang →</a>
+              <a href="Profil.html" class="btn-hero-outline">Kenali Kami</a>
+            </div>
+          </div>
+
+          <!-- Statistik -->
+          <div class="col-lg-5">
+            <div class="hero-card p-4">
+              <h3 class="mb-4">📊 Statistik Sekolah 2026/2027</h3>
+              <div class="row row-cols-2 g-3 text-center">
+                <div class="col">
+                  <span class="stat-num">1.247</span>
+                  <span class="stat-label">Total Siswa</span>
+                </div>
+                <div class="col">
+                  <span class="stat-num">36</span>
+                  <span class="stat-label">Kelas Aktif</span>
+                </div>
+                <div class="col">
+                  <span class="stat-num">24</span>
+                  <span class="stat-label">Ekskul</span>
+                </div>
+                <div class="col">
+                  <span class="stat-num">98%</span>
+                  <span class="stat-label">Kelulusan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BERITA ── -->
+    <section class="py-5 bg-white">
+      <div class="container-lg py-3">
+        <div class="mb-5">
+          <div class="section-label mb-1">📰 Berita</div>
+          <div class="section-title">Berita &amp; Kegiatan</div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Berita utama -->
+          <div class="col-lg-8">
+            <div class="berita-main h-100">
+              <div class="berita-img">🏅</div>
+              <div class="berita-content p-4">
+                <span class="tag mb-2 d-inline-block">Prestasi</span>
+                <h3 class="mt-1 mb-2">Tim Olimpiade Fisika Raih Medali Emas Tingkat Provinsi</h3>
+                <p class="mb-0">
+                  Tiga siswa SMAN 1 Nusantara berhasil meraih medali emas pada Olimpiade Sains Provinsi bidang Fisika yang diselenggarakan di Ibu Kota Provinsi pekan lalu. Keberhasilan ini merupakan buah dari pembinaan intensif selama 6
+                  bulan.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Berita list -->
+          <div class="col-lg-4">
+            <div class="d-flex flex-column gap-3">
+              <div class="berita-item d-flex align-items-start gap-3 p-3">
+                <div class="berita-num">1</div>
+                <div>
+                  <h5 class="mb-1">Bakti Sosial Siswa Kelas XII ke Panti Asuhan</h5>
+                  <span class="date">📅 20 April 2026</span>
+                </div>
+              </div>
+
+              <div class="berita-item d-flex align-items-start gap-3 p-3">
+                <div class="berita-num">2</div>
+                <div>
+                  <h5 class="mb-1">Pentas Seni Akhir Tahun SMAN 1 Nusantara</h5>
+                  <span class="date">📅 15 April 2026</span>
+                </div>
+              </div>
+
+              <div class="berita-item d-flex align-items-start gap-3 p-3">
+                <div class="berita-num">3</div>
+                <div>
+                  <h5 class="mb-1">Pelantikan Pengurus OSIS Baru Periode 2026</h5>
+                  <span class="date">📅 10 April 2026</span>
+                </div>
+              </div>
+
+              <div class="berita-item d-flex align-items-start gap-3 p-3">
+                <div class="berita-num">4</div>
+                <div>
+                  <h5 class="mb-1">Upacara Peringatan Hari Kartini Meriah</h5>
+                  <span class="date">📅 21 April 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WATERMARK ── -->
+    <div class="watermark">
+      <img src="foto rama.jpeg" alt="Foto Mahasiswa" class="d-block mx-auto mb-2" />
+      <div class="wm-name">RAMADANI</div>
+      <div class="wm-nim">NIM: 24.53.031194</div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer class="pt-5 pb-3">
+      <div class="container-lg">
+        <div class="row g-4 mb-4">
+          <div class="col-lg-6">
+            <h3 class="mb-2" style="font-size: 1.1rem">🏫 Kesiswaan SMAN 1 Nusantara</h3>
+            <p class="mb-0">Bidang Kesiswaan hadir untuk melayani seluruh kebutuhan siswa dalam mengembangkan potensi diri secara optimal di lingkungan sekolah yang kondusif dan berprestasi.</p>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <h4 class="mb-3">Menu Utama</h4>
+            <ul class="list-unstyled mb-0">
+              <li><a href="index.html">Beranda</a></li>
+              <li><a href="Profil.html">Profil</a></li>
+              <li><a href="Layanan.html">Layanan</a></li>
+              <li><a href="Galeri.html">Galeri</a></li>
+              <li><a href="Formulir.html">Formulir</a></li>
+            </ul>
+          </div>
+
+          <div class="col-sm-6 col-lg-3">
+            <h4 class="mb-3">Kontak</h4>
+            <ul class="list-unstyled mb-0">
+              <li>Jl. Pendidikan No. 1</li>
+              <li>📞 (021) 123-4567</li>
+              <li>✉️ kesiswaan@sman1.sch.id</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr class="footer-divider" />
+        <p class="footer-bottom text-center mb-0">&copy; 2026 <span>Bidang Kesiswaan SMAN 1 Nusantara</span>. Seluruh hak cipta dilindungi.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
